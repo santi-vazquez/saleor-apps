@@ -206,6 +206,18 @@ export class StripeWebhookUseCase {
      */
     webhookParams: WebhookParams;
   }): R {
+    // Add debugging for webhook execution
+    console.log("=== STRIPE WEBHOOK USE CASE DEBUG ===");
+    console.log("Webhook params:", {
+      saleorApiUrl: webhookParams.saleorApiUrl.toString(),
+      configurationId: webhookParams.configurationId,
+      appId: webhookParams.appId,
+    });
+    console.log("Signature header:", signatureHeader);
+    console.log("Raw body length:", rawBody.length);
+    console.log("Raw body preview:", rawBody.substring(0, 200) + "...");
+    console.log("=== END USE CASE DEBUG ===");
+
     this.logger.debug("Executing");
     const authData = await this.apl.get(webhookParams.saleorApiUrl);
 

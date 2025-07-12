@@ -43,6 +43,14 @@ const useCase = new StripeWebhookUseCase({
 const logger = createLogger("StripeWebhookHandler");
 
 const StripeWebhookHandler = async (request: NextRequest): Promise<Response> => {
+  // Add debugging for request body and headers
+  const requestBody = await request.text();
+  console.log("=== STRIPE WEBHOOK DEBUG ===");
+  console.log("Request URL:", request.url);
+  console.log("Request headers:", Object.fromEntries(request.headers.entries()));
+  console.log("Request body:", requestBody);
+  console.log("=== END DEBUG ===");
+
   /**
    * Has access to first error value
    * Use https://github.com/supermacro/neverthrow#resultcombinewithallerrors-static-class-method to
@@ -78,7 +86,7 @@ const StripeWebhookHandler = async (request: NextRequest): Promise<Response> => 
 
   try {
     const result = await useCase.execute({
-      rawBody: await request.text(),
+      rawBody: requestBody, // Use the already read body
       signatureHeader: stripeSignatureHeader,
       webhookParams,
     });

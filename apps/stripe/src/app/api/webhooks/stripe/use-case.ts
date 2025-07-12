@@ -207,15 +207,21 @@ export class StripeWebhookUseCase {
     webhookParams: WebhookParams;
   }): R {
     // Add debugging for webhook execution
+// eslint-disable-next-line no-console
     console.log("=== STRIPE WEBHOOK USE CASE DEBUG ===");
+// eslint-disable-next-line no-console
     console.log("Webhook params:", {
       saleorApiUrl: webhookParams.saleorApiUrl.toString(),
       configurationId: webhookParams.configurationId,
       appId: webhookParams.appId,
     });
+// eslint-disable-next-line no-console
     console.log("Signature header:", signatureHeader);
+// eslint-disable-next-line no-console
     console.log("Raw body length:", rawBody.length);
+// eslint-disable-next-line no-console
     console.log("Raw body preview:", rawBody.substring(0, 200) + "...");
+// eslint-disable-next-line no-console
     console.log("=== END USE CASE DEBUG ===");
 
     this.logger.debug("Executing");

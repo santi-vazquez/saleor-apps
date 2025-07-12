@@ -45,10 +45,16 @@ const logger = createLogger("StripeWebhookHandler");
 const StripeWebhookHandler = async (request: NextRequest): Promise<Response> => {
   // Add debugging for request body and headers
   const requestBody = await request.text();
+
+// eslint-disable-next-line no-console
   console.log("=== STRIPE WEBHOOK DEBUG ===");
+// eslint-disable-next-line no-console
   console.log("Request URL:", request.url);
+// eslint-disable-next-line no-console
   console.log("Request headers:", Object.fromEntries(request.headers.entries()));
+// eslint-disable-next-line no-console
   console.log("Request body:", requestBody);
+// eslint-disable-next-line no-console
   console.log("=== END DEBUG ===");
 
   /**
